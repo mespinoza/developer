@@ -16,7 +16,7 @@
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
                 <h:panelGroup>
-                    <p:panel>
+                    <p:panel>                    	                   
                         <p:outputLabel value="Criterio" />&nbsp;
                         <p:inputText onblur="this.value = this.value.toUpperCase();"  size="40" />&nbsp;
                         <p:commandButton value="Buscar" icon="ui-icon-search" 
@@ -67,7 +67,11 @@
                         </p:column>
                     </p:dataTable>
                 </h:panelGroup>
-                
+                <p:fieldset legend="Leyenda">
+                <h:panelGrid columns="4">
+                	
+                </h:panelGrid>
+                </p:fieldset>
             </h:form>
         </ui:define>
     </ui:composition>
