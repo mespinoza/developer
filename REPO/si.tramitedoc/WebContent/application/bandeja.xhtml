@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Bandeja Principal"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form id="listForm" >
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <p:panel>
+                        <p:outputLabel value="Criterio" />&nbsp;
+                        <p:inputText onblur="this.value = this.value.toUpperCase();"  size="40" />&nbsp;
+                        <p:commandButton value="Buscar" icon="ui-icon-search" 
+                        update="datatable" />&nbsp;
+                        <p:commandButton style="float: right;" icon="ui-icon-document" value="Nuevo" partialSubmit="true" />
+                    </p:panel>
+                    <h:panelGrid columns="2" style="border: 0px; width: 100%;">
+                        <h:outputLabel value="&lt;br/&gt;Resultados" escape="false" />
+                        <h:commandLink style="float: right; clear: both;">
+                            <p:graphicImage value="/resources/icons/xls.png" width="32" alt="Exportar a Excel."/>
+                            <p:dataExporter type="xls" target="datatable" fileName="Busqueda" />
+                        </h:commandLink>
+                    </h:panelGrid>
+                    <h:panelGrid columns="3">
+                        <p:outputLabel value="Acción: " />
+                        <p:selectOneMenu style="width: 150px" >
+                            <f:selectItem itemLabel="---" itemValue="#{null}"/>
+                            <f:selectItem itemLabel="Derivar" itemValue="1"/>
+                            <f:selectItem itemLabel="Recibir" itemValue="2"/>
+                            <f:selectItem itemLabel="Asignar" itemValue="3"/>
+                        </p:selectOneMenu>
+                        <p:commandButton value="Cambiar" 
+                                         update="@form" />
+                    </h:panelGrid>   
+                    <p:dataTable id="datatable" 
+                                 var="item" widgetVar="usrTable"   
+                                 emptyMessage="No se encontraron resultados" 
+                                 paginator="true" rows="5"  
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 rowsPerPageTemplate="5">
+                        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>         
+                        <p:column headerText="Estado" >                        
+                        </p:column>
+                        <p:column headerText="Hoja de Ruta" >                        
+                        </p:column>
+                        <p:column headerText="Nro. Documento" >                        
+                        </p:column>
+                        <p:column headerText="Fecha Registro" >                        
+                        </p:column>
+                        <p:column headerText="Remitente" >                        
+                        </p:column>
+                        <p:column headerText="Asunto" >                        
+                        </p:column>
+                        <p:column headerText="Ver" >  
+                        <h:commandLink value="Ver Documento" action="#"></h:commandLink>                      
+                        </p:column>
+                        <p:column headerText="Area derivada" >                        
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
